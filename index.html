@@ -2,258 +2,327 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>11 月底约会去哪：南京 · 济南 · 青岛</title>
-<meta name="description" content="北京和上海两地出发，11 月底两天一夜约会，南京、济南、青岛三城对比。">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#fbf6ef">
+<title>11 月底，我们去哪儿？</title>
+<meta name="description" content="三个地方，你来挑。">
 <style>
   :root {
-    --bg: #faf7f2;
+    --bg: #fbf6ef;
     --card: #ffffff;
-    --text: #2b2723;
-    --muted: #7a7168;
-    --line: #e8e1d7;
-    --accent: #b5562b;
-    --nanjing: #c8892b;
-    --jinan: #3f7f6b;
-    --qingdao: #2f6ea3;
+    --text: #3a322c;
+    --muted: #8c8178;
+    --line: #efe6da;
+    --accent: #c9725a;
+    --soft: #f6ebe1;
   }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #1b1916;
-      --card: #24211d;
-      --text: #ece6dd;
-      --muted: #a39a8f;
-      --line: #3a352f;
-      --accent: #e08a5c;
-      --nanjing: #e0a54a;
-      --jinan: #6fb59c;
-      --qingdao: #6aa6d8;
-    }
-  }
-  * { box-sizing: border-box; }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html { -webkit-text-size-adjust: 100%; }
   body {
     margin: 0;
     background: var(--bg);
     color: var(--text);
     font-family: -apple-system, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-    line-height: 1.7;
     font-size: 16px;
+    line-height: 1.75;
   }
-  .wrap { max-width: 920px; margin: 0 auto; padding: 32px 20px 64px; }
-  header { padding: 24px 0 8px; }
-  .kicker { color: var(--accent); font-weight: 600; letter-spacing: .08em; font-size: 13px; }
-  h1 { font-size: 30px; line-height: 1.3; margin: 8px 0 12px; }
-  h2 { font-size: 21px; margin: 44px 0 14px; }
-  h3 { font-size: 18px; margin: 0 0 6px; }
-  p { margin: 8px 0; }
-  .sub { color: var(--muted); }
-  .verdict {
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-left: 4px solid var(--accent);
-    border-radius: 10px;
-    padding: 16px 20px;
-    margin-top: 20px;
+  .wrap {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: calc(28px + env(safe-area-inset-top)) 18px calc(48px + env(safe-area-inset-bottom));
   }
-  .verdict b { color: var(--accent); }
-  .table-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--card); }
-  table { width: 100%; border-collapse: collapse; min-width: 640px; }
-  th, td { padding: 12px 14px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); font-size: 15px; }
-  tr:last-child td { border-bottom: none; }
-  thead th { font-size: 14px; color: var(--muted); font-weight: 600; background: transparent; }
-  tbody th { font-weight: 600; white-space: nowrap; color: var(--muted); width: 110px; }
-  .c-nj { color: var(--nanjing); }
-  .c-jn { color: var(--jinan); }
-  .c-qd { color: var(--qingdao); }
-  .tag { display: inline-block; font-size: 12px; padding: 1px 8px; border-radius: 999px; border: 1px solid currentColor; margin-left: 6px; vertical-align: 2px; }
-  .best { font-weight: 600; }
-  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
-  .card {
-    background: var(--card);
-    border: 1px solid var(--line);
-    border-top: 4px solid var(--c);
-    border-radius: 10px;
-    padding: 18px 18px 14px;
+
+  /* 开头 */
+  .hello { padding: 20px 4px 8px; }
+  .hello .date { font-size: 13px; color: var(--accent); letter-spacing: .12em; }
+  .hello h1 { font-size: 27px; line-height: 1.35; margin: 10px 0 14px; font-weight: 700; }
+  .hello p { margin: 6px 0; color: var(--muted); }
+
+  /* 顶部快速跳转 */
+  .jump {
+    position: sticky; top: 0; z-index: 5;
+    display: flex; gap: 8px;
+    padding: 10px 0;
+    margin: 18px -18px 4px; padding-left: 18px; padding-right: 18px;
+    background: rgba(251, 246, 239, .92);
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
   }
-  .card h3 { color: var(--c); }
-  .card .one { color: var(--muted); font-size: 14px; margin-bottom: 10px; }
-  .card ul { padding-left: 18px; margin: 6px 0 10px; }
-  .card li { margin: 3px 0; }
-  .label { font-size: 13px; font-weight: 600; color: var(--muted); margin-top: 10px; }
-  .plan { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 6px 20px 14px; }
-  .day { padding: 12px 0; border-bottom: 1px dashed var(--line); }
-  .day:last-child { border-bottom: none; }
-  .day h3 { font-size: 16px; }
-  .day ol { margin: 4px 0; padding-left: 20px; }
-  .tips li { margin: 6px 0; }
-  footer { margin-top: 48px; font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 16px; }
+  .jump a {
+    flex: 1; text-align: center; text-decoration: none;
+    color: var(--text); font-size: 15px;
+    padding: 8px 0; border-radius: 999px;
+    background: var(--card); border: 1px solid var(--line);
+  }
+
+  /* 一眼看完 */
+  .glance {
+    background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+    padding: 14px 14px 6px; margin-top: 14px;
+  }
+  .glance .t { font-size: 13px; color: var(--muted); margin-bottom: 6px; }
+  .grid { display: grid; grid-template-columns: 64px repeat(3, 1fr); font-size: 14px; }
+  .grid div { padding: 9px 4px; border-top: 1px solid var(--line); line-height: 1.45; }
+  .grid .h { border-top: none; font-weight: 600; text-align: center; }
+  .grid .k { color: var(--muted); font-size: 13px; }
+  .grid .v { text-align: center; }
+
+  /* 城市卡片 */
+  .city {
+    background: var(--card); border: 1px solid var(--line); border-radius: 20px;
+    overflow: hidden; margin-top: 22px; scroll-margin-top: 64px;
+    transition: box-shadow .2s, border-color .2s;
+  }
+  .city.chosen { border-color: var(--c); box-shadow: 0 0 0 2px var(--c); }
+  .cover {
+    height: 150px; position: relative;
+    background: var(--g);
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 16px 18px; color: #fff;
+  }
+  .cover .icon { position: absolute; right: 16px; top: 10px; font-size: 54px; opacity: .9; }
+  .cover h2 { margin: 0; font-size: 26px; letter-spacing: .06em; text-shadow: 0 1px 6px rgba(0,0,0,.15); }
+  .cover .line { font-size: 14px; opacity: .95; }
+  .body { padding: 14px 18px 18px; }
+  .facts { display: flex; gap: 8px; flex-wrap: wrap; margin: 2px 0 10px; }
+  .facts span {
+    font-size: 13px; padding: 3px 10px; border-radius: 999px;
+    background: var(--soft); color: var(--text);
+  }
+  .sec { font-size: 13px; color: var(--muted); margin-top: 12px; }
+  .body ul { margin: 4px 0; padding-left: 0; list-style: none; }
+  .body li { padding: 3px 0 3px 18px; position: relative; }
+  .body li::before { content: ""; position: absolute; left: 4px; top: 13px; width: 5px; height: 5px; border-radius: 50%; background: var(--c); }
+  .note { background: var(--soft); border-radius: 12px; padding: 10px 12px; font-size: 14px; margin-top: 12px; }
+  .pick {
+    display: block; width: 100%; margin-top: 16px;
+    min-height: 48px; border: none; border-radius: 14px;
+    background: var(--c); color: #fff; font-size: 16px; font-weight: 600;
+    font-family: inherit; cursor: pointer;
+  }
+  .pick:active { transform: scale(.98); }
+
+  /* 不管去哪 */
+  .promise {
+    background: var(--card); border: 1px solid var(--line); border-radius: 20px;
+    padding: 18px; margin-top: 28px;
+  }
+  .promise h3 { margin: 0 0 6px; font-size: 18px; }
+  .promise ul { margin: 6px 0 0; padding-left: 20px; }
+  .promise li { margin: 4px 0; }
+
+  .other { text-align: center; margin-top: 26px; color: var(--muted); font-size: 15px; }
+  .other button {
+    margin-top: 10px; min-height: 44px; padding: 0 22px;
+    border-radius: 999px; border: 1px solid var(--line); background: var(--card);
+    color: var(--text); font-size: 15px; font-family: inherit; cursor: pointer;
+  }
+  footer { text-align: center; color: var(--muted); font-size: 12px; margin-top: 32px; line-height: 1.6; }
+
+  /* 选好之后的提示 */
+  .sheet {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 10;
+    transform: translateY(110%); transition: transform .3s ease;
+    padding: 0 12px calc(12px + env(safe-area-inset-bottom));
+  }
+  .sheet.show { transform: translateY(0); }
+  .sheet .in {
+    max-width: 480px; margin: 0 auto; background: var(--card);
+    border-radius: 20px; padding: 18px 18px 14px;
+    box-shadow: 0 -4px 30px rgba(80, 50, 30, .15); text-align: center;
+  }
+  .sheet .big { font-size: 18px; font-weight: 600; }
+  .sheet .msg {
+    margin: 10px 0; padding: 10px; border-radius: 12px; background: var(--soft);
+    font-size: 15px; -webkit-user-select: all; user-select: all;
+  }
+  .sheet .tip { font-size: 13px; color: var(--muted); }
+  .sheet button {
+    margin-top: 10px; min-height: 44px; width: 100%; border: none; border-radius: 12px;
+    background: var(--soft); color: var(--text); font-size: 15px; font-family: inherit;
+  }
 </style>
 </head>
 <body>
 <div class="wrap">
 
-<header>
-  <div class="kicker">北京 ⇄ 上海 · 11 月底 · 两天一夜</div>
-  <h1>约会去哪？南京、济南、青岛三城对比</h1>
-  <p class="sub">一人从北京出发，一人从上海出发，找个地方见面玩两天。</p>
-  <div class="verdict">
-    <b>结论：选南京。</b>11 月底正好是南京梧桐最黄的几周，天气比青岛暖和，城市氛围也最适合边走边聊。
-    济南最省事、最便宜；青岛海边有新鲜感，但这个季节风大很冷。
-  </div>
-</header>
+  <section class="hello">
+    <div class="date">11 月底 · 两天一夜</div>
+    <h1>这次见面，<br>我们去哪儿？</h1>
+    <p>我挑了三个地方，各有各的好，没有标准答案。</p>
+    <p>你看哪个最心动，就选哪个。</p>
+  </section>
 
-<h2>一张表看完</h2>
-<div class="table-scroll">
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th class="c-nj">南京<span class="tag">推荐</span></th>
-      <th class="c-jn">济南</th>
-      <th class="c-qd">青岛</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>北京出发</th>
-      <td>高铁约 3–4 小时</td>
-      <td class="best">高铁约 1.5–2 小时</td>
-      <td>高铁约 3–3.5 小时</td>
-    </tr>
-    <tr>
-      <th>上海出发</th>
-      <td class="best">高铁约 1–1.5 小时</td>
-      <td>高铁约 3–3.5 小时</td>
-      <td>飞机约 1.5 小时 + 机场进城约 1 小时<br><span class="sub">（高铁约 6 小时）</span></td>
-    </tr>
-    <tr>
-      <th>11 月底天气</th>
-      <td class="best">约 5–14°C，较温和</td>
-      <td>约 0–10°C，偏干冷</td>
-      <td>约 3–11°C，海风大，体感更冷</td>
-    </tr>
-    <tr>
-      <th>这个季节看什么</th>
-      <td class="best">梧桐、银杏最黄；栖霞山红叶尾声</td>
-      <td>泉水、老街；秋色已近尾声</td>
-      <td>淡季安静的海；栈桥海鸥开始来</td>
-    </tr>
-    <tr>
-      <th>约会氛围</th>
-      <td class="best">最好：老街、梧桐路、书店、湖边</td>
-      <td>一般：生活气浓，玩两三次就熟了</td>
-      <td>好：看海、红瓦老城，很有旅行感</td>
-    </tr>
-    <tr>
-      <th>吃</th>
-      <td>鸭血粉丝、盐水鸭、汤包、小馆子</td>
-      <td>把子肉、甜沫、油旋、老街小吃</td>
-      <td class="best">海鲜、青岛啤酒</td>
-    </tr>
-    <tr>
-      <th>花费</th>
-      <td>中等，周末酒店偏贵</td>
-      <td class="best">最便宜</td>
-      <td>淡季酒店便宜，机票另算</td>
-    </tr>
-    <tr>
-      <th>主要缺点</th>
-      <td>周末热门景点人多，部分要预约</td>
-      <td>约会感偏弱</td>
-      <td>冷；上海那边路上折腾</td>
-    </tr>
-  </tbody>
-</table>
+  <nav class="jump">
+    <a href="#nanjing">南京</a>
+    <a href="#jinan">济南</a>
+    <a href="#qingdao">青岛</a>
+  </nav>
+
+  <div class="glance">
+    <div class="t">先一眼看完</div>
+    <div class="grid">
+      <div class="h"></div><div class="h">南京</div><div class="h">济南</div><div class="h">青岛</div>
+      <div class="k">北京出发</div><div class="v">高铁<br>3–4 小时</div><div class="v">高铁<br>1.5–2 小时</div><div class="v">高铁<br>3–3.5 小时</div>
+      <div class="k">上海出发</div><div class="v">高铁<br>1–1.5 小时</div><div class="v">高铁<br>3–3.5 小时</div><div class="v">飞机<br>1.5 小时</div>
+      <div class="k">气温</div><div class="v">5–14°C</div><div class="v">0–10°C</div><div class="v">3–11°C</div>
+      <div class="k">感觉</div><div class="v">金黄梧桐</div><div class="v">泉水老街</div><div class="v">冬天的海</div>
+    </div>
+  </div>
+
+  <!-- 南京 -->
+  <article class="city" id="nanjing" style="--c:#c98a2e; --g: linear-gradient(135deg, #f0c36a 0%, #d98a3d 55%, #b9662f 100%);">
+    <div class="cover">
+      <div class="icon">🍂</div>
+      <h2>南京</h2>
+      <div class="line">一年里梧桐最黄的那几周</div>
+    </div>
+    <div class="body">
+      <div class="facts"><span>5–14°C 不太冷</span><span>适合慢慢走</span></div>
+      <div class="sec">可以一起做的事</div>
+      <ul>
+        <li>沿着陵园路散步，头顶全是金黄的梧桐</li>
+        <li>在颐和路的老洋房之间找家小咖啡馆坐坐</li>
+        <li>晚上去秦淮河边看灯</li>
+        <li>在先锋书店各自挑一本书送给对方</li>
+      </ul>
+      <div class="sec">可以一起吃的</div>
+      <ul>
+        <li>鸭血粉丝汤、小笼汤包、盐水鸭</li>
+        <li>老门东的各种小吃</li>
+      </ul>
+      <div class="note">💡 周末人会多一点，需要预约的景点我提前约好，尽量挑人少的时间去。</div>
+      <button class="pick" data-city="南京">想去南京</button>
+    </div>
+  </article>
+
+  <!-- 济南 -->
+  <article class="city" id="jinan" style="--c:#3e8a74; --g: linear-gradient(135deg, #8fd0b8 0%, #4f9e86 55%, #2f7462 100%);">
+    <div class="cover">
+      <div class="icon">💧</div>
+      <h2>济南</h2>
+      <div class="line">泉水从家门口流过的老城</div>
+    </div>
+    <div class="body">
+      <div class="facts"><span>0–10°C 干冷</span><span>小而不累</span></div>
+      <div class="sec">可以一起做的事</div>
+      <ul>
+        <li>在曲水亭街看泉水从人家门前流过</li>
+        <li>绕着大明湖慢慢散步</li>
+        <li>看趵突泉三股水往上冒</li>
+        <li>傍晚上千佛山，看城市亮灯</li>
+      </ul>
+      <div class="sec">可以一起吃的</div>
+      <ul>
+        <li>把子肉、油旋、甜沫</li>
+        <li>芙蓉街、宽厚里的小吃</li>
+      </ul>
+      <div class="note">💡 地方都在老城里，走走停停就能逛完，不用赶。北方干燥，记得带润唇膏。</div>
+      <button class="pick" data-city="济南">想去济南</button>
+    </div>
+  </article>
+
+  <!-- 青岛 -->
+  <article class="city" id="qingdao" style="--c:#3577b0; --g: linear-gradient(135deg, #9fd0ef 0%, #4d93c9 55%, #2a5f93 100%);">
+    <div class="cover">
+      <div class="icon">🌊</div>
+      <h2>青岛</h2>
+      <div class="line">冬天安静下来的海</div>
+    </div>
+    <div class="body">
+      <div class="facts"><span>3–11°C 海风大</span><span>淡季人少</span></div>
+      <div class="sec">可以一起做的事</div>
+      <ul>
+        <li>在栈桥边看海鸥飞过来</li>
+        <li>在八大关的红瓦房和小路之间散步</li>
+        <li>爬上小鱼山，看红瓦房和海连在一起</li>
+        <li>找家海边咖啡馆，晒着太阳发会儿呆</li>
+      </ul>
+      <div class="sec">可以一起吃的</div>
+      <ul>
+        <li>海鲜、鲅鱼水饺</li>
+        <li>一杯刚打出来的青岛啤酒</li>
+      </ul>
+      <div class="note">💡 海边风大，带上围巾和帽子，暖宝宝我来准备。</div>
+      <button class="pick" data-city="青岛">想去青岛</button>
+    </div>
+  </article>
+
+  <section class="promise">
+    <h3>不管去哪儿</h3>
+    <ul>
+      <li>攻略我来做，你只管来</li>
+      <li>行程不排太满，每天都留出发呆的时间</li>
+      <li>住干净、安静、出门就方便的地方</li>
+      <li>走累了就歇，想改计划随时改</li>
+    </ul>
+  </section>
+
+  <div class="other">
+    都不太想去也没关系，<br>你有想去的地方就告诉我。
+    <br><button id="other">我有别的想法</button>
+  </div>
+
+  <footer>车程和气温都是大概范围，出发前我会再确认一次。</footer>
 </div>
 
-<h2>三个城市分别怎么样</h2>
-<div class="cards">
-  <div class="card" style="--c: var(--nanjing)">
-    <h3>南京</h3>
-    <div class="one">氛围最好，现在正是好季节</div>
-    <div class="label">适合去的地方</div>
-    <ul>
-      <li>陵园路、美龄宫看梧桐</li>
-      <li>颐和路民国街区散步</li>
-      <li>玄武湖骑车、明城墙</li>
-      <li>老门东、秦淮河夜游</li>
-      <li>先锋书店（五台山店）</li>
-    </ul>
-    <div class="label">注意</div>
-    <ul>
-      <li>美龄宫等景点要提前网上预约</li>
-      <li>周末早上 8–9 点前到，人少很多</li>
-    </ul>
-  </div>
-
-  <div class="card" style="--c: var(--jinan)">
-    <h3>济南</h3>
-    <div class="one">最省事、最便宜</div>
-    <div class="label">适合去的地方</div>
-    <ul>
-      <li>趵突泉、黑虎泉</li>
-      <li>大明湖散步</li>
-      <li>芙蓉街、曲水亭街老街</li>
-      <li>千佛山看城市</li>
-      <li>宽厚里吃吃逛逛</li>
-    </ul>
-    <div class="label">注意</div>
-    <ul>
-      <li>景点集中在老城，步行就能串起来</li>
-      <li>11 月底红叶基本看不到了</li>
-    </ul>
-  </div>
-
-  <div class="card" style="--c: var(--qingdao)">
-    <h3>青岛</h3>
-    <div class="one">海边，有新鲜感</div>
-    <div class="label">适合去的地方</div>
-    <ul>
-      <li>栈桥看海鸥</li>
-      <li>八大关散步</li>
-      <li>小鱼山、信号山看红瓦房和海</li>
-      <li>天主教堂、老城区</li>
-      <li>海边咖啡馆 + 海鲜啤酒</li>
-    </ul>
-    <div class="label">注意</div>
-    <ul>
-      <li>胶东机场离市区远，预留 1 小时</li>
-      <li>海边风大，带厚外套、围巾、帽子</li>
-    </ul>
+<div class="sheet" id="sheet">
+  <div class="in">
+    <div class="big" id="sheetTitle"></div>
+    <div class="msg" id="sheetMsg"></div>
+    <div class="tip" id="sheetTip"></div>
+    <button id="sheetClose">好的</button>
   </div>
 </div>
 
-<h2>推荐行程：南京两天一夜</h2>
-<div class="plan">
-  <div class="day">
-    <h3>第一天</h3>
-    <ol>
-      <li><b>上午</b>：中山陵景区，沿陵园路走到美龄宫，看金黄的梧桐</li>
-      <li><b>下午</b>：颐和路、民国街区散步，找家咖啡馆坐坐</li>
-      <li><b>晚上</b>：老门东吃晚饭，再去夫子庙、秦淮河夜游</li>
-    </ol>
-  </div>
-  <div class="day">
-    <h3>第二天</h3>
-    <ol>
-      <li><b>上午</b>：玄武湖骑车或散步，顺便走一段明城墙</li>
-      <li><b>下午</b>：先锋书店（五台山店），然后各自返程</li>
-    </ol>
-  </div>
-  <p class="sub">住宿：新街口或颐和路一带，去哪都方便。时间富余的话可以加半天栖霞山，出发前看一下红叶还剩多少。</p>
-</div>
+<script>
+  var sheet = document.getElementById('sheet');
+  var title = document.getElementById('sheetTitle');
+  var msgBox = document.getElementById('sheetMsg');
+  var tip = document.getElementById('sheetTip');
 
-<h2>出发前</h2>
-<ul class="tips">
-  <li>车次和时间以 12306 为准，周五晚、周日下午的票要早点抢，可以设候补</li>
-  <li>需要预约的景点提前几天约好</li>
-  <li>出发前两天再看一次天气，按实际温度带衣服</li>
-</ul>
+  function copy(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text).then(function () { return true; }, function () { return legacyCopy(text); });
+    }
+    return Promise.resolve(legacyCopy(text));
+  }
+  function legacyCopy(text) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(ta);
+    return ok;
+  }
+  function open(heading, text) {
+    title.textContent = heading;
+    msgBox.textContent = text;
+    tip.textContent = '';
+    sheet.classList.add('show');
+    copy(text).then(function (ok) {
+      tip.textContent = ok ? '这句话已经复制好了，发给我就行' : '长按上面这句话复制，发给我就行';
+    });
+  }
 
-<footer>
-  文中车程、气温为大致范围，仅供参考，以实际查询为准。
-</footer>
-
-</div>
+  document.querySelectorAll('.pick').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var city = btn.dataset.city;
+      document.querySelectorAll('.city').forEach(function (c) { c.classList.remove('chosen'); });
+      btn.closest('.city').classList.add('chosen');
+      open('那就' + city + '啦', '我想去' + city + '～');
+    });
+  });
+  document.getElementById('other').addEventListener('click', function () {
+    open('说说看', '我想去……');
+  });
+  document.getElementById('sheetClose').addEventListener('click', function () {
+    sheet.classList.remove('show');
+  });
+</script>
 </body>
 </html>
