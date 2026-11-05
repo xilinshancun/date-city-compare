@@ -101,14 +101,6 @@
   }
   .pick:active { transform: scale(.98); }
 
-  /* 不管去哪 */
-  .promise {
-    background: var(--card); border: 1px solid var(--line); border-radius: 20px;
-    padding: 18px; margin-top: 28px;
-  }
-  .promise h3 { margin: 0 0 6px; font-size: 18px; }
-  .promise ul { margin: 6px 0 0; padding-left: 20px; }
-  .promise li { margin: 4px 0; }
 
   .other { text-align: center; margin-top: 26px; color: var(--muted); font-size: 15px; }
   .other button {
@@ -190,7 +182,7 @@
         <li>鸭血粉丝汤、小笼汤包、盐水鸭</li>
         <li>老门东的各种小吃</li>
       </ul>
-      <div class="note">💡 周末人会多一点，需要预约的景点我提前约好，尽量挑人少的时间去。</div>
+      <div class="note">💡 周末人会多一点，有些景点要提前预约，早上去人会少很多。</div>
       <button class="pick" data-city="南京">想去南京</button>
     </div>
   </article>
@@ -242,27 +234,17 @@
         <li>海鲜、鲅鱼水饺</li>
         <li>一杯刚打出来的青岛啤酒</li>
       </ul>
-      <div class="note">💡 海边风大，带上围巾和帽子，暖宝宝我来准备。</div>
+      <div class="note">💡 海边风大，围巾、帽子、暖宝宝都用得上。</div>
       <button class="pick" data-city="青岛">想去青岛</button>
     </div>
   </article>
-
-  <section class="promise">
-    <h3>不管去哪儿</h3>
-    <ul>
-      <li>攻略我来做，你只管来</li>
-      <li>行程不排太满，每天都留出发呆的时间</li>
-      <li>住干净、安静、出门就方便的地方</li>
-      <li>走累了就歇，想改计划随时改</li>
-    </ul>
-  </section>
 
   <div class="other">
     都不太想去也没关系，<br>你有想去的地方就告诉我。
     <br><button id="other">我有别的想法</button>
   </div>
 
-  <footer>车程和气温都是大概范围，出发前我会再确认一次。</footer>
+  <footer>车程和气温都是大概范围，以实际为准。</footer>
 </div>
 
 <div class="sheet" id="sheet">
