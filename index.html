@@ -142,6 +142,7 @@
     <h1>这次见面，<br>我们去哪儿？</h1>
     <p>我挑了三个地方，各有各的好，没有标准答案。</p>
     <p>你看哪个最心动，就选哪个。</p>
+    <p id="notifyHint" hidden>选好了点一下按钮，我这边就能收到。</p>
   </section>
 
   <nav class="jump">
@@ -281,14 +282,40 @@
     document.body.removeChild(ta);
     return ok;
   }
-  function open(heading, text) {
+  // 点按钮后推送通知给我。type 填 "bark"（iPhone 的 Bark App）或 "serverchan"（Server酱，推送到微信），
+  // key 填对应的 key。key 留空时不推送，只复制文字。
+  var NOTIFY = { type: 'serverchan', key: 'SCT462311TxsKT8hwdoLf25irYVrjuHkfd' };
+  var notifyOn = !!(NOTIFY.type && NOTIFY.key);
+  if (notifyOn) document.getElementById('notifyHint').hidden = false;
+
+  function push(text) {
+    var t = encodeURIComponent('她选好了');
+    var b = encodeURIComponent(text);
+    var url = NOTIFY.type === 'bark'
+      ? 'https://api.day.app/' + NOTIFY.key + '/' + t + '/' + b
+      : 'https://sctapi.ftqq.com/' + NOTIFY.key + '.send?title=' + t + '%EF%BC%9A' + b;
+    var timeout = new Promise(function (_, reject) { setTimeout(reject, 8000); });
+    return Promise.race([fetch(url, { mode: 'no-cors' }), timeout]);
+  }
+
+  function open(heading, text, pushText, sentText) {
     title.textContent = heading;
     msgBox.textContent = text;
     tip.textContent = '';
     sheet.classList.add('show');
-    copy(text).then(function (ok) {
-      tip.textContent = ok ? '这句话已经复制好了，发给我就行' : '长按上面这句话复制，发给我就行';
-    });
+    // 先复制，推送失败时她还能手动发
+    var copied = copy(text);
+    function showCopyTip() {
+      copied.then(function (ok) {
+        tip.textContent = ok ? '这句话已经复制好了，发给我就行' : '长按上面这句话复制，发给我就行';
+      });
+    }
+    if (!notifyOn) return showCopyTip();
+    tip.textContent = '正在告诉我…';
+    push(pushText).then(function () {
+      msgBox.textContent = sentText;
+      tip.textContent = '';
+    }, showCopyTip);
   }
 
   document.querySelectorAll('.pick').forEach(function (btn) {
@@ -296,11 +323,11 @@
       var city = btn.dataset.city;
       document.querySelectorAll('.city').forEach(function (c) { c.classList.remove('chosen'); });
       btn.closest('.city').classList.add('chosen');
-      open('那就' + city + '啦', '我想去' + city + '～');
+      open('那就' + city + '啦', '我想去' + city + '～', '想去' + city, '已经告诉我啦 ✓');
     });
   });
   document.getElementById('other').addEventListener('click', function () {
-    open('说说看', '我想去……');
+    open('说说看', '我想去……', '有别的想法', '我收到啦，想去哪儿直接跟我说～');
   });
   document.getElementById('sheetClose').addEventListener('click', function () {
     sheet.classList.remove('show');
